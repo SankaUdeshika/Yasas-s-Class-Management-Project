@@ -42,8 +42,6 @@ public class StudentLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Email");
 
-        jPasswordField1.setText("jPasswordField1");
-
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +110,7 @@ public class StudentLogin extends javax.swing.JFrame {
         String Email = jTextField1.getText();
         char[] Password = jPasswordField1.getPassword();
 
-        System.out.println(Password);
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
