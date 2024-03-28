@@ -15,6 +15,8 @@ public class TecherLogin extends javax.swing.JFrame {
      */
     public TecherLogin() {
         initComponents();
+                setLocationRelativeTo(null);
+
     }
 
     /**
