@@ -142,9 +142,7 @@ public class StudentLogin extends javax.swing.JFrame {
 
                     StudentUser au = new StudentUser();
                     au.setEmail(EmailSave);
-                    au.setFirstName(FnameSave);
-                    au.setLastName(LnameSave);
-
+                   
                     StudentDashboard ad = new StudentDashboard();
                     ad.setVisible(true);
                     this.dispose();
