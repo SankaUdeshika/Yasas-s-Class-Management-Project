@@ -23,8 +23,9 @@ public class StundetRegisterClass extends javax.swing.JFrame {
     public StundetRegisterClass() {
         initComponents();
         RefreshClassTable();
+        setLocationRelativeTo(null);
     }
-
+    
     public void RefreshClassTable() {
         try {
             ResultSet result = MySQL.execute("SELECT * FROM `classslot` INNER JOIN `grade` ON `Grade_id` = `Grade_Grade_id` INNER JOIN `subject` ON `Subject_id` = `subject_Subject_id` INNER JOIN `teacher` ON `Email` = `Teacher_Email` ");
@@ -32,12 +33,12 @@ public class StundetRegisterClass extends javax.swing.JFrame {
             model.setRowCount(0);
             while (result.next()) {
                 Vector<String> vector = new Vector<>();
-
+                
                 vector.add(String.valueOf(result.getString("class_id")));
                 vector.add(String.valueOf(result.getString("Grade_name")));
                 vector.add(String.valueOf(result.getString("Subject_name")));
                 vector.add(String.valueOf(result.getString("Fname") + " " + result.getString("Lname")));
-
+                
                 model.addRow(vector);
             }
         } catch (Exception e) {
@@ -149,15 +150,15 @@ public class StundetRegisterClass extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // Register to the Class
         int SelectRow = jTable1.getSelectedRow();
-
+        
         if (SelectRow == -1) {
             JOptionPane.showMessageDialog(this, "Please Select a Class");
         } else {
             String class_id = String.valueOf(jTable1.getValueAt(SelectRow, 0));
             System.out.println(StudentUser.getEmail());
-            MySQL.execute("INSERT INTO `classslot_has_student` (`ClassSlot_class_id`,`Student_Email`)VALUES ('"+class_id+"','"+StudentUser.getEmail()+"')");
+            MySQL.execute("INSERT INTO `classslot_has_student` (`ClassSlot_class_id`,`Student_Email`)VALUES ('" + class_id + "','" + StudentUser.getEmail() + "')");
         }
-
+        
 
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
