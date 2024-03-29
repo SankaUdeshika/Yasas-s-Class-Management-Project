@@ -508,7 +508,9 @@ public class AdminManageClass extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     adminAd
+        AdminAdvanceManageClasses admc = new AdminAdvanceManageClasses();
+        admc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
