@@ -95,14 +95,25 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        StudentLogin st = new StudentLogin();
-        st.setVisible(true);
-        this.dispose();
+        Object[] options = {"Create a Account", "Login"};
+        int ChooseOption = JOptionPane.showOptionDialog(this, "Choose Your Account", "Do you Have Studnet Account?",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+        if (ChooseOption == 0) {
+            StudentRegister sr = new StudentRegister();
+            sr.setVisible(true);
+            this.dispose();
+        } else if (ChooseOption == 1) {
+            StudentLogin sl = new StudentLogin();
+            sl.setVisible(true);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    Object[] options = {"Teacher", "Admin"};
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object[] options = {"Teacher", "Admin"};
         int ChooseOption = JOptionPane.showOptionDialog(this, "Choose Your Job Roll", "Choose Your Account",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
@@ -111,7 +122,9 @@ public class HomePage extends javax.swing.JFrame {
             t.setVisible(true);
             this.dispose();
         } else if (ChooseOption == 1) {
-            System.out.println("admin");
+            adminLogin al = new adminLogin();
+            al.setVisible(true);
+            this.dispose();
         }
 
 
