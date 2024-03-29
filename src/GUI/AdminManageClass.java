@@ -25,6 +25,23 @@ public class AdminManageClass extends javax.swing.JFrame {
         initComponents();
         RefreshSubjectComboBox();
         RefreshTeacherTable();
+        RefreshGradeComboBox();
+    }
+
+    public void RefreshGradeComboBox() {
+        try {
+            ResultSet rs = MySQL.execute("SELECT * FROM `grade`  ");
+            Vector v = new Vector();
+
+            while (rs.next()) {
+                v.add(rs.getString(2));
+            }
+            DefaultComboBoxModel model = new DefaultComboBoxModel(v);
+            jComboBox3.setModel(model);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void RefreshSubjectComboBox() {
@@ -41,6 +58,7 @@ public class AdminManageClass extends javax.swing.JFrame {
             jComboBox2.setModel(model);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,6 +100,12 @@ public class AdminManageClass extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,9 +139,7 @@ public class AdminManageClass extends javax.swing.JFrame {
 
         jLabel4.setText("Select Subject");
 
-        jLabel5.setText("Select a Teacher");
-
-        jTextField2.setText("Teacher Email");
+        jLabel5.setText("Search Teacher Name");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
@@ -128,12 +150,38 @@ public class AdminManageClass extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Manage Grade");
+
+        jButton3.setText("Add");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        jToggleButton2.setText("Delete");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(341, 341, 341)
+                .addComponent(jButton2)
+                .addGap(266, 266, 266)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -148,16 +196,30 @@ public class AdminManageClass extends javax.swing.JFrame {
                                 .addComponent(jTextField1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                         .addComponent(jLabel5)
-                        .addGap(18, 147, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(7, 7, 7))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jToggleButton2))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,10 +237,25 @@ public class AdminManageClass extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,22 +265,17 @@ public class AdminManageClass extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel5)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jToggleButton1))
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel6)
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton2))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -235,6 +307,33 @@ public class AdminManageClass extends javax.swing.JFrame {
         RefreshSubjectComboBox();
         RefreshTeacherTable();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        adminDashboard ad = new adminDashboard();
+        ad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Add Grade
+        String Grade = jTextField3.getText();
+
+        if (Grade.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Grade Number");
+        } else {
+            UUID uuid = UUID.randomUUID();
+            String uniqueID = uuid.toString();
+
+            MySQL.execute("INSERT INTO `grade` (`Grade_id`,`Grade_name`) VALUES ('" + uniqueID + "','" + Grade + "') ");
+            RefreshSubjectComboBox();
+            JOptionPane.showMessageDialog(this, "Grade Added");
+            RefreshGradeComboBox();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,17 +372,23 @@ public class AdminManageClass extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
 }
