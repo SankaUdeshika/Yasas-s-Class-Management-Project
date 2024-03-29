@@ -196,7 +196,7 @@ public class AdminRegisterTeacher extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Enter a Password");
         } else {
             MySQL.execute("INSERT INTO `teacher` (`Email`,`Fname`,`Lname`,`Mobile`,`password`) VALUES ('" + Email + "','" + Fname + "','" + Lname + "','" + Mobile + "','" + Password + "')");
-            JOptionPane.showConfirmDialog(this, "Register Success");
+            JOptionPane.showMessageDialog(this, "Register Success");
             resetFields();
         }
 
@@ -204,7 +204,7 @@ public class AdminRegisterTeacher extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Back
+        // Backgi
         adminDashboard ad = new adminDashboard();
         ad.setVisible(true);
         this.dispose();
