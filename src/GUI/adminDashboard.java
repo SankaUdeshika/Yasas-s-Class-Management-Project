@@ -15,8 +15,7 @@ public class adminDashboard extends javax.swing.JFrame {
     public adminDashboard() {
         initComponents();
         setLocationRelativeTo(null);
-        jLabel4.setText(adminUser.getFirstName());
-
+        jLabel4.setText(adminUser.getFirstName() + " " + adminUser.getLastName());
     }
 
     @SuppressWarnings("unchecked")
@@ -132,7 +131,13 @@ public class adminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        adminUser.setEmail("");
+        adminUser.setFirstName("");
+        adminUser.setLastName("");
+        adminUser.setMobile("");
+        HomePage hp = new HomePage();
+        hp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
