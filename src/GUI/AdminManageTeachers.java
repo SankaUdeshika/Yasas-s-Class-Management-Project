@@ -24,7 +24,7 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         RefreshTable();
     }
-    
+
     public void RefreshTextfield() {
         jTextField1.setText("");
         jTextField2.setText("");
@@ -32,13 +32,13 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField4.setText("");
     }
-    
+
     public void RefreshTable() {
         try {
             ResultSet rs = MySQL.execute("SELECT * FROM `teacher`");
             DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
             tb.setRowCount(0);
-            
+
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
@@ -120,6 +120,11 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,12 +253,12 @@ public class AdminManageTeachers extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // Search Teacher by Email:
         String Name = jTextField1.getText();
-        
+
         try {
             ResultSet rs = MySQL.execute("SELECT * FROM `teacher` WHERE `Fname` LIKE '%" + Name + "%' ");
             DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
             tb.setRowCount(0);
-            
+
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
@@ -282,13 +287,13 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         String FirstName = String.valueOf(jTable1.getValueAt(SelectRow, 1));
         String LastName = String.valueOf(jTable1.getValueAt(SelectRow, 2));
         String Mobile = String.valueOf(jTable1.getValueAt(SelectRow, 3));
-        
+
         jTextField2.setText(Email);
         jTextField2.setEditable(false);
         jTextField3.setText(FirstName);
         jTextField5.setText(LastName);
         jTextField4.setText(Mobile);
-        
+
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -298,7 +303,7 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         String Fname = jTextField3.getText();
         String Lname = jTextField5.getText();
         String Mobile = jTextField4.getText();
-        
+
         if (Email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter a Email Address");
         } else if (Fname.isEmpty()) {
@@ -313,7 +318,7 @@ public class AdminManageTeachers extends javax.swing.JFrame {
             RefreshTable();
             RefreshTextfield();
         }
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -322,6 +327,19 @@ public class AdminManageTeachers extends javax.swing.JFrame {
         RefreshTable();
         RefreshTextfield();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Delete Teacher Record
+        String Email = jTextField2.getText();
+        if (Email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select a Teacher Record");
+        } else {
+            MySQL.execute("DELETE FROM `teacher` WHERE `Email` = '" + Email + "'");
+            JOptionPane.showMessageDialog(this, "Delete Success");
+            RefreshTable();
+            RefreshTextfield();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
