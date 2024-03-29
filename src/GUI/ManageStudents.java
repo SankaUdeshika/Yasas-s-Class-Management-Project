@@ -25,7 +25,7 @@ public class ManageStudents extends javax.swing.JFrame {
         refreshStudentTable();
         RefreshGradeComboBox();
     }
-
+    
     public void refreshStudentTable() {
         try {
             ResultSet result = MySQL.execute("SELECT * FROM `student` INNER JOIN `grade` ON `Grade_id` = `Grade_Grade_id` ");
@@ -39,14 +39,14 @@ public class ManageStudents extends javax.swing.JFrame {
                 vector.add(result.getString("Age"));
                 vector.add(result.getString("mobile"));
                 vector.add(result.getString("Grade_name"));
-
+                
                 model.addRow(vector);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     public void RefreshGradeComboBox() {
         try {
             ResultSet rs = MySQL.execute("SELECT * FROM `grade`  ");
@@ -84,6 +84,8 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,40 +126,64 @@ public class ManageStudents extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Delete Student");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(104, 104, 104))
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, 224, Short.MAX_VALUE))
+                        .addGap(104, 104, 104))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addComponent(jButton2)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -175,7 +201,9 @@ public class ManageStudents extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -189,12 +217,12 @@ public class ManageStudents extends javax.swing.JFrame {
         String Lname = String.valueOf(jTable1.getValueAt(SelectRow, 2));
         String Age = String.valueOf(jTable1.getValueAt(SelectRow, 3));
         String mobile = String.valueOf(jTable1.getValueAt(SelectRow, 4));
-
+        
         jTextField1.setText(Fname);
         jTextField2.setText(Lname);
         jTextField3.setText(Age);
         jTextField4.setText(mobile);
-
+        
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -209,7 +237,7 @@ public class ManageStudents extends javax.swing.JFrame {
         String Grade = String.valueOf(jComboBox1.getSelectedItem());
         String Grade_id = "";
         try {
-
+            
             ResultSet Grs = MySQL.execute("SELECT * FROM `grade` WHERE `Grade_name` = '" + Grade + "' ");
             if (Grs.next()) {
                 Grade_id = Grs.getString("Grade_id");
@@ -217,7 +245,7 @@ public class ManageStudents extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         if (Fname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter a First Name");
         } else if (Lname.isEmpty()) {
@@ -229,7 +257,7 @@ public class ManageStudents extends javax.swing.JFrame {
         } else if (Grade == "Select Grade") {
             JOptionPane.showMessageDialog(this, "Please Select a Grade");
         } else {
-
+            
             try {
                 MySQL.execute("UPDATE `student` SET `Fname` = '" + Fname + "' , `Lname` = '" + Lname + "' , `Mobile` = '" + mobile + "' , `Grade_Grade_id` = '" + Grade_id + "'  WHERE `Email` = '" + Email + "' ");
                 JOptionPane.showMessageDialog(this, "Update Success");
@@ -240,6 +268,22 @@ public class ManageStudents extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        adminDashboard ad = new adminDashboard();
+        ad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int SelectRow = jTable1.getSelectedRow();
+        String Email = String.valueOf(jTable1.getValueAt(SelectRow, 0));
+        
+        MySQL.execute("DELETE FROM `student` WHERE `Email` = '"+Email+"'");
+        JOptionPane.showMessageDialog(this, "Delete Successfull");
+        refreshStudentTable();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +322,8 @@ public class ManageStudents extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
