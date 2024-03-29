@@ -18,23 +18,14 @@ public class adminUser {
         this.Mobile = mobile;
     }
 
-    /**
-     * @return the Email
-     */
     public static String getEmail() {
         return Email;
     }
 
-    /**
-     * @param Email the Email to set
-     */
     public static void setEmail(String Email) {
         adminUser.Email = Email;
     }
 
-    /**
-     * @return the FirstName
-     */
     public static String getFirstName() {
         return FirstName;
     }

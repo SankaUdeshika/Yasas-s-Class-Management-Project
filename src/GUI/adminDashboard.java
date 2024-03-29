@@ -39,6 +39,11 @@ public class adminDashboard extends javax.swing.JFrame {
         jButton1.setText("Manage Teacher");
 
         jButton2.setText("Register Teacher");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Manage Teacher");
 
@@ -139,6 +144,13 @@ public class adminDashboard extends javax.swing.JFrame {
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Link Teacher Register 
+        AdminRegisterTeacher art = new AdminRegisterTeacher();
+        art.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
