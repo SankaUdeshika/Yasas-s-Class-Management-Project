@@ -131,12 +131,24 @@ public class adminLogin extends javax.swing.JFrame {
             try {
                 ResultSet rs = MySQL.execute("SELECT * FROM `admin` WHERE `Email` = '" + Email + "' AND `Password` = '" + Password + "'");
                 if (rs.next()) {
-//                    rs.getString(Email);
-                    System.out.println(rs.getString("Email"));
-//                    adminUser au = new adminUser(Email, Password, Email, Email, Email)
-//                    adminDashboard ad = new adminDashboard();
-//                    ad.setVisible(true);
-//                    this.dispose();
+                    String EmailSave = rs.getString(1);
+                    String FnameSave = rs.getString(3);
+                    String LnameSave = rs.getString(4);
+                    String mobileSave = rs.getString(5);
+
+                    System.out.println(EmailSave);
+                    System.out.println(FnameSave);
+                    System.out.println(LnameSave);
+
+                    adminUser au = new adminUser();
+                    au.setEmail(EmailSave);
+                    au.setFirstName(FnameSave);
+                    au.setLastName(LnameSave);
+                    au.setMobile(mobileSave);
+
+                    adminDashboard ad = new adminDashboard();
+                    ad.setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "invalid Login Details");
                 }

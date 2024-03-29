@@ -2,15 +2,17 @@ package UsersRolls;
 
 public class adminUser {
 
-    private String Email;
-    private String Password;
-    private String FirstName;
-    private String LastName;
-    private String Mobile;
+    private static String Email;
+    private static String FirstName;
+    private static String LastName;
+    private static String Mobile;
 
-    public adminUser(String email, String password, String fname, String lname, String mobile) {
+    public adminUser() {
+
+    }
+
+    public adminUser(String email, String fname, String lname, String mobile) {
         this.Email = email;
-        this.Password = password;
         this.FirstName = fname;
         this.LastName = lname;
         this.Mobile = mobile;
@@ -19,71 +21,57 @@ public class adminUser {
     /**
      * @return the Email
      */
-    public String getEmail() {
+    public static String getEmail() {
         return Email;
     }
 
     /**
      * @param Email the Email to set
      */
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    /**
-     * @return the Password
-     */
-    public String getPassword() {
-        return Password;
-    }
-
-    /**
-     * @param Password the Password to set
-     */
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public static void setEmail(String Email) {
+        adminUser.Email = Email;
     }
 
     /**
      * @return the FirstName
      */
-    public String getFirstName() {
+    public static String getFirstName() {
         return FirstName;
     }
 
     /**
      * @param FirstName the FirstName to set
      */
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public  static void setFirstName(String FirstName) {
+        adminUser.FirstName = FirstName;
     }
 
     /**
      * @return the LastName
      */
-    public String getLastName() {
+    public static String getLastName() {
         return LastName;
     }
 
     /**
      * @param LastName the LastName to set
      */
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public static void setLastName(String LastName) {
+        adminUser.LastName = LastName;
     }
 
     /**
      * @return the Mobile
      */
-    public String getMobile() {
+    public static String getMobile() {
         return Mobile;
     }
 
     /**
      * @param Mobile the Mobile to set
      */
-    public void setMobile(String Mobile) {
-        this.Mobile = Mobile;
+    public static void setMobile(String Mobile) {
+        adminUser.Mobile = Mobile;
     }
 
 }
