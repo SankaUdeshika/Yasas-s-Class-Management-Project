@@ -1,6 +1,7 @@
 package GUI;
 
 import Connection.MySQL;
+import UsersRolls.adminUser;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -130,9 +131,12 @@ public class adminLogin extends javax.swing.JFrame {
             try {
                 ResultSet rs = MySQL.execute("SELECT * FROM `admin` WHERE `Email` = '" + Email + "' AND `Password` = '" + Password + "'");
                 if (rs.next()) {
-                    adminDashboard ad = new adminDashboard();
-                    ad.setVisible(true);
-                    this.dispose();
+//                    rs.getString(Email);
+                    System.out.println(rs.getString("Email"));
+//                    adminUser au = new adminUser(Email, Password, Email, Email, Email)
+//                    adminDashboard ad = new adminDashboard();
+//                    ad.setVisible(true);
+//                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "invalid Login Details");
                 }
