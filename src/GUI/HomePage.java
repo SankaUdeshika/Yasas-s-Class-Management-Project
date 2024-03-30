@@ -126,8 +126,6 @@ public class HomePage extends javax.swing.JFrame {
             al.setVisible(true);
             this.dispose();
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
