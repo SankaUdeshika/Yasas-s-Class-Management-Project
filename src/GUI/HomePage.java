@@ -111,7 +111,6 @@ public class HomePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Object[] options = {"Teacher", "Admin"};
         int ChooseOption = JOptionPane.showOptionDialog(this, "Choose Your Job Roll", "Choose Your Account",
