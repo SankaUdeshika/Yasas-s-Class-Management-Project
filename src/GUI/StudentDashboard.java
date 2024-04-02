@@ -5,6 +5,7 @@
 package GUI;
 
 import Connection.MySQL;
+import UsersRolls.StudentUser;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Vector;
@@ -15,32 +16,32 @@ import javax.swing.table.DefaultTableModel;
  * @author sanka
  */
 public class StudentDashboard extends javax.swing.JFrame {
-    
+
     public StudentDashboard() {
         initComponents();
         setLocationRelativeTo(null);
         RefreshClassTable();
         GetDate();
     }
-    
+
     public void GetDate() {
         Date date = new Date();
         jLabel2.setText(String.valueOf(date));
     }
-    
+
     public void RefreshClassTable() {
         try {
-            ResultSet result = MySQL.execute("SELECT * FROM `classslot` INNER JOIN `grade` ON `Grade_id` = `Grade_Grade_id` INNER JOIN `subject` ON `Subject_id` = `subject_Subject_id` INNER JOIN `teacher` ON `Email` = `Teacher_Email` ");
+            ResultSet result = MySQL.execute("SELECT * FROM `classslot_has_student` INNER JOIN `classslot` ON `ClassSlot_class_id` = `class_id` INNER JOIN `grade` ON `Grade_id` = `Grade_Grade_id` INNER JOIN `subject` ON `Subject_id` = `subject_Subject_id` INNER JOIN `teacher` ON `Email` = `Teacher_Email` WHERE `Student_Email` = '"+StudentUser.getEmail()+"' ");
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (result.next()) {
                 Vector<String> vector = new Vector<>();
-                
+
                 vector.add(String.valueOf(result.getString("class_id")));
                 vector.add(String.valueOf(result.getString("Grade_name")));
                 vector.add(String.valueOf(result.getString("Subject_name")));
                 vector.add(String.valueOf(result.getString("Fname") + " " + result.getString("Lname")));
-                
+
                 model.addRow(vector);
             }
         } catch (Exception e) {
@@ -168,7 +169,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
     }//GEN-LAST:event_jTable1MouseClicked
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
