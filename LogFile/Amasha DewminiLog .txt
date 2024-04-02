@@ -1,0 +1,6 @@
+	 This is the Student Report 	 
+  Email = Amasha@gmail.com
+ Full Name = Amasha Dewmini
+ Age = 11
+ Mobile = 0112727526
+ Grade =5

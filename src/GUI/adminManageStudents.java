@@ -5,11 +5,18 @@
 package GUI;
 
 import Connection.MySQL;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
+//import .lowagie.text.Document;
 
 /**
  *
@@ -25,7 +32,7 @@ public class adminManageStudents extends javax.swing.JFrame {
         refreshStudentTable();
         RefreshGradeComboBox();
     }
-    
+
     public void refreshStudentTable() {
         try {
             ResultSet result = MySQL.execute("SELECT * FROM `student` INNER JOIN `grade` ON `Grade_id` = `Grade_Grade_id` ");
@@ -39,14 +46,14 @@ public class adminManageStudents extends javax.swing.JFrame {
                 vector.add(result.getString("Age"));
                 vector.add(result.getString("mobile"));
                 vector.add(result.getString("Grade_name"));
-                
+
                 model.addRow(vector);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void RefreshGradeComboBox() {
         try {
             ResultSet rs = MySQL.execute("SELECT * FROM `grade`  ");
@@ -86,6 +93,8 @@ public class adminManageStudents extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +149,20 @@ public class adminManageStudents extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Generate Student Report");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Genarate Text File");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,9 +172,9 @@ public class adminManageStudents extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -160,23 +183,26 @@ public class adminManageStudents extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2)
                             .addComponent(jTextField1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, 224, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4)
+                            .addComponent(jComboBox1, 0, 226, Short.MAX_VALUE))
                         .addGap(104, 104, 104))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -203,7 +229,9 @@ public class adminManageStudents extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -217,12 +245,12 @@ public class adminManageStudents extends javax.swing.JFrame {
         String Lname = String.valueOf(jTable1.getValueAt(SelectRow, 2));
         String Age = String.valueOf(jTable1.getValueAt(SelectRow, 3));
         String mobile = String.valueOf(jTable1.getValueAt(SelectRow, 4));
-        
+
         jTextField1.setText(Fname);
         jTextField2.setText(Lname);
         jTextField3.setText(Age);
         jTextField4.setText(mobile);
-        
+
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -237,7 +265,7 @@ public class adminManageStudents extends javax.swing.JFrame {
         String Grade = String.valueOf(jComboBox1.getSelectedItem());
         String Grade_id = "";
         try {
-            
+
             ResultSet Grs = MySQL.execute("SELECT * FROM `grade` WHERE `Grade_name` = '" + Grade + "' ");
             if (Grs.next()) {
                 Grade_id = Grs.getString("Grade_id");
@@ -245,7 +273,7 @@ public class adminManageStudents extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         if (Fname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter a First Name");
         } else if (Lname.isEmpty()) {
@@ -257,7 +285,7 @@ public class adminManageStudents extends javax.swing.JFrame {
         } else if (Grade == "Select Grade") {
             JOptionPane.showMessageDialog(this, "Please Select a Grade");
         } else {
-            
+
             try {
                 MySQL.execute("UPDATE `student` SET `Fname` = '" + Fname + "' , `Lname` = '" + Lname + "' , `Mobile` = '" + mobile + "' , `Grade_Grade_id` = '" + Grade_id + "'  WHERE `Email` = '" + Email + "' ");
                 JOptionPane.showMessageDialog(this, "Update Success");
@@ -278,12 +306,80 @@ public class adminManageStudents extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int SelectRow = jTable1.getSelectedRow();
         String Email = String.valueOf(jTable1.getValueAt(SelectRow, 0));
-        
-        MySQL.execute("DELETE FROM `student` WHERE `Email` = '"+Email+"'");
+
+        MySQL.execute("DELETE FROM `student` WHERE `Email` = '" + Email + "'");
         JOptionPane.showMessageDialog(this, "Delete Successfull");
         refreshStudentTable();
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+//      Generate PDF
+        try {
+
+            int TableRow = jTable1.getSelectedRow();
+            System.out.println(TableRow);
+
+            if (TableRow > -1) {
+                String Email = String.valueOf(jTable1.getValueAt(TableRow, 0));
+                String FirstName = String.valueOf(jTable1.getValueAt(TableRow, 1));
+                String LastName = String.valueOf(jTable1.getValueAt(TableRow, 2));
+                String Age = String.valueOf(jTable1.getValueAt(TableRow, 3));
+                String mobile = String.valueOf(jTable1.getValueAt(TableRow, 4));
+                String Grade = String.valueOf(jTable1.getValueAt(TableRow, 5));
+
+                String fileName = "C:\\Users\\sanka\\OneDrive\\Documents\\NetBeansProjects\\StudentClassManagement\\Reports\\" + FirstName + " " + LastName + "StudentReport .pdf";
+                com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+                PdfWriter.getInstance(document, new FileOutputStream(fileName));
+                document.open();
+
+                String OutText = "\t This is the Student Report \t \n  Email = " + Email + "\n Full Name = " + FirstName + " " + LastName + "\n Age = " + Age + "\n Mobile = " + mobile + "\n Grade =" + Grade;
+                Paragraph para = new Paragraph(OutText);
+                document.add(para);
+
+                document.close();
+                JOptionPane.showMessageDialog(this, "Done Create Log File");
+
+            } else if (TableRow == -1) {
+                JOptionPane.showMessageDialog(this, "Please Select a Student First");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // Generate TextFile
+        try {
+
+            int TableRow = jTable1.getSelectedRow();
+            System.out.println(TableRow);
+
+            if (TableRow > -1) {
+                String Email = String.valueOf(jTable1.getValueAt(TableRow, 0));
+                String FirstName = String.valueOf(jTable1.getValueAt(TableRow, 1));
+                String LastName = String.valueOf(jTable1.getValueAt(TableRow, 2));
+                String Age = String.valueOf(jTable1.getValueAt(TableRow, 3));
+                String mobile = String.valueOf(jTable1.getValueAt(TableRow, 4));
+                String Grade = String.valueOf(jTable1.getValueAt(TableRow, 5));
+
+                String fileName = "C:\\Users\\sanka\\OneDrive\\Documents\\NetBeansProjects\\StudentClassManagement\\LogFile\\" + FirstName + " " + LastName + "Log .txt";
+                FileWriter writer = new FileWriter(fileName);
+                String OutText = "\t This is the Student Report \t \n  Email = " + Email + "\n Full Name = " + FirstName + " " + LastName + "\n Age = " + Age + "\n Mobile = " + mobile + "\n Grade =" + Grade;
+                writer.write(OutText);
+
+                writer.close();
+
+                JOptionPane.showMessageDialog(this, "Done Create Log File");
+
+            } else if (TableRow == -1) {
+                JOptionPane.showMessageDialog(this, "Please Select a Student First");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,6 +421,8 @@ public class adminManageStudents extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
