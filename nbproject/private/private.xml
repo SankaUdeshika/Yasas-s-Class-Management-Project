@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sanka/OneDrive/Documents/NetBeansProjects/StudentClassManagement/src/GUI/AdminManageClass.java</file>
-            <file>file:/C:/Users/sanka/OneDrive/Documents/NetBeansProjects/StudentClassManagement/src/GUI/adminDashboard.java</file>
+            <file>file:/C:/Users/sanka/OneDrive/Documents/NetBeansProjects/StudentClassManagement/src/GUI/TeacherDashboard.java</file>
+            <file>file:/C:/Users/sanka/OneDrive/Documents/NetBeansProjects/StudentClassManagement/src/GUI/HomePage.java</file>
+            <file>file:/C:/Users/sanka/OneDrive/Documents/NetBeansProjects/StudentClassManagement/src/GUI/StudentDashboard.java</file>
         </group>
     </open-files>
 </project-private>
