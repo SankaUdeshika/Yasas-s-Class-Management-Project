@@ -31,6 +31,7 @@ public class adminManageStudents extends javax.swing.JFrame {
         initComponents();
         refreshStudentTable();
         RefreshGradeComboBox();
+        setLocationRelativeTo(null);
     }
 
     public void refreshStudentTable() {
